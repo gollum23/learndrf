@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'quickstart',
+    'tutorial_1',
 )
 
 MIDDLEWARE_CLASSES = (
