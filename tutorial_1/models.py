@@ -2,7 +2,10 @@
 __author__ = 'gollum23'
 __date__ = '12/5/14'
 from django.db import models
-from pygments.lexers import get_all_lexers
+from django.contrib.auth.models import User
+from pygments import highlight
+from pygments.formatters.html import HtmlFormatter
+from pygments.lexers import get_all_lexers, get_lexer_by_name
 from pygments.styles import get_all_styles
 
 LEXERS = [item for item in get_all_lexers() if item[1]]
@@ -33,6 +36,24 @@ class Snippet(models.Model):
         default='friendly',
         max_length=100
     )
+    owner = models.ForeignKey(
+        User,
+        related_name='snippets'
+    )
+    highlighted = models.TextField()
 
     class Meta:
         ordering = ('created',)
+
+    def save(self, *args, **kwargs):
+        """
+        Usar la librería pygments para crear una representación en
+        HTML resaltado del snippet de código
+        """
+        lexer = get_lexer_by_name(self.language)
+        linenos = self.linenos and 'table' or False
+        options = self.title and {'title': self.title} or {}
+        formatter = HtmlFormatter(style=self.style, linenos=linenos,
+                                  full=True, **options)
+        self.highlighted = highlight(self.code, lexer, formatter)
+        super(Snippet, self).save(*args, **kwargs)
