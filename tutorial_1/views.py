@@ -10,7 +10,7 @@ from .serializers import SnippetSerializer
 
 
 @api_view(['GET', 'POST'])
-def snippet_list(request):
+def snippet_list(request, format=None):
     """
     Listado de todos los códigos snippets, o crear un nuevo snippet
     """
@@ -27,7 +27,7 @@ def snippet_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def snippet_detail(request, pk):
+def snippet_detail(request, pk, format=None):
     """
     Lee, actualiza o borra un snippet
     """
