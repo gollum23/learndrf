@@ -4,7 +4,6 @@ __date__ = '12/5/14'
 from django.conf.urls import url, patterns, include
 
 from rest_framework.routers import DefaultRouter
-from rest_framework.urlpatterns import format_suffix_patterns
 
 from .views import SnippetViewSet, UserViewSet
 
@@ -15,8 +14,6 @@ router.register(r'users', UserViewSet)
 urlpatterns = patterns(
     '',
     url(r'^', include(router.urls)),
+
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )
-
-# Add format suffix to urls
-urlpatterns = format_suffix_patterns(urlpatterns)
