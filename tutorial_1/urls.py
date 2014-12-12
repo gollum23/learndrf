@@ -11,8 +11,8 @@ urlpatterns = patterns(
     '',
     url(r'^$', 'tutorial_1.views.api_root'),
     url(r'^snippets/$', SnippetList.as_view(), name='snippet-list'),
-    url(r'^snippets/(?P<pk>[0-9]+)/$', SnippetDetail.as_view()),
-    url(r'^snippets/(?P<pk>[0-9]+)/highlight/$', SnippetHighlight.as_view()),
+    url(r'^snippets/(?P<pk>[0-9]+)/$', SnippetDetail.as_view(), name='snippet-detail'),
+    url(r'^snippets/(?P<pk>[0-9]+)/highlight/$', SnippetHighlight.as_view(), name='snippet-highlight'),
     url(r'^users/$', UserList.as_view(), name='user-list'),
     url(r'^users/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
 
