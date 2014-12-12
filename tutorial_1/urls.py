@@ -5,12 +5,14 @@ from django.conf.urls import url, patterns, include
 # Import format suffix
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from .views import SnippetList, SnippetDetail, UserList, UserDetail
+from .views import SnippetList, SnippetDetail, UserList, UserDetail, SnippetHighlight
 
 urlpatterns = patterns(
     '',
-    url(r'^$', SnippetList.as_view()),
+    # url(r'^$', SnippetList.as_view()),
+    url(r'^$', 'tutorial_1.views.api_root'),
     url(r'^(?P<pk>[0-9]+)/$', SnippetDetail.as_view()),
+    url(r'^(?P<pk>[0-9]+)/highlight/$', SnippetHighlight.as_view()),
     url(r'^users/$', UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
 
