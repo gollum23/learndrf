@@ -14,7 +14,7 @@ urlpatterns = patterns(
     url(r'^snippets/(?P<pk>[0-9]+)/$', SnippetDetail.as_view(), name='snippet-detail'),
     url(r'^snippets/(?P<pk>[0-9]+)/highlight/$', SnippetHighlight.as_view(), name='snippet-highlight'),
     url(r'^users/$', UserList.as_view(), name='user-list'),
-    url(r'^users/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
+    url(r'^users/(?P<pk>[0-9]+)/$', UserDetail.as_view(), name='user-detail'),
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )
